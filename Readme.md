@@ -1,6 +1,6 @@
 # CPP MODULE 01
 
-## EX00 BraiiiiiiinnnzzzZ
+## Exercise 00: BraiiiiiiinnnzzzZ
 
 #### About Memory
 ![img.png](memory_layout.png)
@@ -137,3 +137,53 @@ int main(){
 	return (0);
 ```
 ![img.png](ex00_result.png)
+
+
+## Exercise 05: Karen 2.0
+
+#### About Branch(Jump) Table
+
+> A jump table can be either an array of pointers to functions or an array of machine code jump instructions
+
+만일 정해진(static) 함수의 집합이 있다면 함수의 pointer 를 Table 로 만들 수 있다.
+이 Table 의 index 를 통해 간단히 함수 포인터를 검색하거나 접근할 수 있다!
+
+이를 사용할 시 이점은
+* index는 메모리 효율이 좋다(if/else 는 메모리 효율이 나쁜편).
+* 외부 함수에서 사용해도, index는 stable 하다는 점.
+* 함수를 변경하고자 하면 포인터만 교체하면 됨.
+
+```c++
+inline char prompt() //this function will probably 900% be inlined even if you don't specify the inlike keyword
+{
+    printf("Enter number from 0 to 3 or q to quit:\n");
+    char v;
+    while (!(std::cin >> v)); //Just to make sure we get valid input
+    return v;
+}
+
+int main()
+{
+    static const std::unordered_map<char, void(*)()> mymap = 
+    {
+        { '0' , Zero },
+        { '1' , One },
+        { '2' , Two },
+        { '3' , Three }
+    };
+
+    while(1)
+    {
+        auto it = mymap.find(prompt());
+
+        // Without this check, your program will crash if input is invalid.
+        if (it != mymap.end()) 
+        {
+            it->second();
+            break;
+        }
+    }
+
+    return 0;
+}
+```
