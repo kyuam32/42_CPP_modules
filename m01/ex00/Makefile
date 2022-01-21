@@ -1,8 +1,8 @@
 NAME = Zombie
 
 CC = clang++
-#CFLAG = -std=c++98 -Wall -Wextra -Werror
-CFLAG = -std=c++98 -g
+CFLAG = -std=c++98 -Wall -Wextra -Werror
+#CFLAG = -std=c++98 -g
 
 FILE = main Zombie
 

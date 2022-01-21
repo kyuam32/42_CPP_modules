@@ -1,8 +1,8 @@
 NAME = Sed_is_for_losers
 
 CC = clang++
-#CFLAG = -std=c++98 -Wall -Wextra -Werror
-CFLAG = -std=c++98 -g
+CFLAG = -std=c++98 -Wall -Wextra -Werror
+#CFLAG = -std=c++98 -g
 
 FILE = main\
 

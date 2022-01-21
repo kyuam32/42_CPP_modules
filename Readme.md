@@ -156,7 +156,7 @@ int main(){
 ```c++
 inline char prompt() //this function will probably 900% be inlined even if you don't specify the inlike keyword
 {
-    printf("Enter number from 0 to 3 or q to quit:\n");
+    printf("Enter bits from 0 to 3 or q to quit:\n");
     char v;
     while (!(std::cin >> v)); //Just to make sure we get valid input
     return v;
@@ -187,3 +187,53 @@ int main()
     return 0;
 }
 ```
+
+# CPP MODULE 02
+
+## Exercise 00: My First Orthodox
+
+#### About Complement
+
+* 음수의 표현
+  * 부호 비트와 절대값
+    * 최상위 bit로 부효를 표현하고, 나머지 비트로 정수의 절대값을 표현
+    * 표현할 수 있는 절대값의 범위가 절반이 됨.
+    * -0 이 존재하는 문제점이 생김.
+  * 1의 보수법(One's Complement)
+    * not 연산으로 양수의 모든 비트를 반전해서 음수를 표현하는 방법.
+    * -0 이 존재하는 문제점이 생김.
+      ![img.png](one_complement.png)
+  * 2의 보수법(Two's Complement)
+    * not 연산 후 1을 더해서 음수를 표현하는 방법.
+    * 0 의 경우 not 연산 후 1을 더하면 overflow 로 인해 다시 0이 됨
+    * -0 을 없앨 수 있다!
+      ![img.png](two_complement.png)
+  * 바이어스 표현법(Biased notation)
+    * float point 의 지수부 부호를 표기하기 위해 사용
+    * 가장 작은 음수를 00....00, 가장 큰 양수를 11....11 과 같이 표현하는 방법.
+    * 부호를 바꾸기 위해선 정해진 상수를 더하거나 빼야 함(IEEE754 표준 8bit 기준 2^(8-1)-1).
+#### About Fixed/Float Point Number
+
+* fixed point bits (고정 소수점)
+  * 고정 소수점은 특정한 크기로 예약된 bit 의 정수부와 소수부를 갖는다.
+
+
+* float point bits (부동 소수점)
+  * 부동 소수점은 부호부 1bit 지수부 8bit 가수부 23bit 를 갖는다.
+  * 표현하고자 하는 수를 2진수로 치환하고, `1.가수부 * 2^지수부` 와 같은 형태로 만든다.
+  * 가수부는 가수부에 2를 계속 곱하여 정수로 만든 뒤 2진법으로 변환한다고 생각하면 쉽다.
+  ```c++
+  10진수를 2진수로
+  0.6875 * 2 = 1.375
+  1.375 * 2 = 2.75
+  2.75 * 2 = 5.5
+  5.5 * 2 = 11
+  11 ---binary--> 1011
+  == 0.1011
+  
+  2진수를 10진수로
+  0.1101
+  1 / 2^1 + 1 / 2^2 + 0 / 2^3 + 1 / 2^4
+  
+  * ```
+  * 정수부는 무조건 1이기 떄문에 이는 데이터에서 생략됨.

@@ -1,8 +1,8 @@
 NAME = Unnecessary_violence
 
 CC = clang++
-#CFLAG = -std=c++98 -Wall -Wextra -Werror
-CFLAG = -std=c++98 -g -fsanitize=address
+CFLAG = -std=c++98 -Wall -Wextra -Werror
+#CFLAG = -std=c++98 -g -fsanitize=address
 
 FILE = main\
 		HumanA\

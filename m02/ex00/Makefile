@@ -1,10 +1,11 @@
-NAME = HI_THIS_IS_BRAIN
+NAME = My_First_Orthodox
 
 CC = clang++
-CFLAG = -std=c++98 -Wall -Wextra -Werror
-#CFLAG = -std=c++98 -g
+#CFLAG = -std=c++98 -Wall -Wextra -Werror
+CFLAG = -std=c++98 -g
 
-FILE = main
+FILE = main\
+		Fixed\
 
 SRCDIR = ./
 SRC = $(addprefix $(SRCDIR), $(addsuffix .cpp, $(FILE)))
