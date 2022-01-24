@@ -1,7 +1,4 @@
-*
-!*.md
-!*.png
-!*.pdf
-!*.cpp
-!*.h
+*.o
+/.idea
+!*.*
 !Makefile

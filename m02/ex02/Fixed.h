@@ -32,13 +32,15 @@ public:
 	Fixed operator*(const Fixed &ref);
 	Fixed operator/(const Fixed &ref);
 
-	Fixed &operator++(int);
-	Fixed operator++();
-	Fixed &operator--(int);
-	Fixed operator--();
+	Fixed operator++(int);
+	Fixed &operator++();
+	Fixed operator--(int);
+	Fixed &operator--();
 
 	static Fixed &min(Fixed &a, Fixed &b);
+	static const Fixed &min(const Fixed &a, const Fixed &b);
 	static Fixed &max(Fixed &a, Fixed &b);
+	static const Fixed &max(const Fixed &a, const Fixed &b);
 
 	int getRawBits( void ) const;
 	void setRawBits(int raw);

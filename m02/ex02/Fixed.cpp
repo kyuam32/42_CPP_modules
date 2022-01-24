@@ -27,7 +27,7 @@ Fixed::~Fixed()
 
 Fixed &Fixed::operator=(const Fixed &ref)
 {
-	this->setRawBits(ref.bits);
+	this->bits = ref.bits;
 	return *this;
 }
 
@@ -125,26 +125,26 @@ Fixed Fixed::operator/(const Fixed &ref)
 	return (Fixed(this->toFloat() / ref.toFloat()));
 }
 
-Fixed & Fixed::operator++(int)
+Fixed Fixed::operator++(int)
 {
 	Fixed temp = *this;
 	this->bits++;
 	return temp;
 }
 
-Fixed Fixed::operator++()
+Fixed &Fixed::operator++()
 {
 	this->bits++;
 	return (*this);
 }
-Fixed & Fixed::operator--(int)
+Fixed Fixed::operator--(int)
 {
 	Fixed temp = *this;
 	this->bits--;
 	return temp;
 }
 
-Fixed Fixed::operator--()
+Fixed &Fixed::operator--()
 {
 	this->bits--;
 	return (*this);
@@ -158,6 +158,16 @@ Fixed &Fixed::min(Fixed &a, Fixed &b)
 Fixed &Fixed::max(Fixed &a, Fixed &b)
 {
 	return (a > b ? a : b);
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return ((Fixed)a > (Fixed)b ? b : a);
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	return ((Fixed)a > (Fixed)b ? a : b);
 }
 
 
